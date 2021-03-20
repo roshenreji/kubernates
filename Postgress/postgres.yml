@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Deployment`
 metadata:
   name: postgress
 spec:
@@ -25,13 +25,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgress-service
+  name: postgres-service
 spec:
   selector:
-    app: postgress
-  type: LoadBalancer  
+    app: postgreiss
+  type: ClusterIP
   ports:
     - protocol: TCP
-      port: 8080
+      port: 5432
       targetPort: 5432
-      nodePort: 30000
+     

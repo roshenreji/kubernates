@@ -14,10 +14,30 @@ spec:
       containers:
       - name: myapp
         image: roshenreji/kubernetes-app
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        env:
+        - name: DB_SERVER
+          valueFrom:
+            configMapKeyRef: 
+              name: postgress-configmap
+              key: db_server
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: postgress-configmap
+              key: postgres-db
+
+        - name: POSTGRES_USER 
+          valueFrom:
+            configMapKeyRef:
+              name: postgress-configmap
+              key: postgres_user    
+
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: postgress-configmap
+              key: postgres_pass
+             
         ports:
         - containerPort: 8080
 
